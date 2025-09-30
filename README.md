@@ -6,12 +6,12 @@ El sistema permite administrar productos, registrar transacciones de compra/vent
 ## Estructura del repositorio
 
 inventario-microservicios/
-├── frontend-prueba/            # Aplicación Angular
-├── ProductosService/           # Microservicio .NET para productos
-├── TransaccionesService/       # Microservicio .NET para transacciones
-├── InventarioMicroservicios.sln
-└── db/
-    └── inventario.sql          # Script SQL para crear la base de datos
+frontend-prueba/            # Aplicación Angular
+ProductosService/           # Microservicio .NET para productos
+TransaccionesService/       # Microservicio .NET para transacciones
+InventarioMicroservicios.sln
+db/
+    inventario.sql          # Script SQL para crear la base de datos
 
 ## Requerimientos
 
