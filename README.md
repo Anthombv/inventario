@@ -3,16 +3,6 @@
 Este proyecto implementa una aplicación de gestión de inventarios compuesta por un frontend en Angular y dos microservicios en .NET Core.  
 El sistema permite administrar productos, registrar transacciones de compra/venta y consultar el historial con filtros.
 
-## Estructura del repositorio
-
-inventario-microservicios/
-frontend-prueba/            # Aplicación Angular
-ProductosService/           # Microservicio .NET para productos
-TransaccionesService/       # Microservicio .NET para transacciones
-InventarioMicroservicios.sln
-db/
-    inventario.sql          # Script SQL para crear la base de datos
-
 ## Requerimientos
 
 - Node.js 20.x o superior  
