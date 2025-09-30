@@ -1,0 +1,71 @@
+<h2>{{ form.get("id") ? "Editar Transacción" : "Registrar Transacción" }}</h2>
+
+<form [formGroup]="form" (ngSubmit)="guardar()" class="transaction-form">
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Producto</mat-label>
+    <mat-select
+      formControlName="productoId"
+      (selectionChange)="onProductoChange($event.value)"
+    >
+      <mat-option>
+        <ngx-mat-select-search
+          placeholderLabel="Buscar producto"
+          noEntriesFoundLabel="No encontrado"
+        ></ngx-mat-select-search>
+      </mat-option>
+      <mat-option *ngFor="let p of productos" [value]="p.id">
+        {{ p.nombre }} (Stock: {{ p.stock }})
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Tipo</mat-label>
+    <mat-select formControlName="tipo">
+      <mat-option value="compra">Compra</mat-option>
+      <mat-option value="venta">Venta</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Cantidad</mat-label>
+    <input
+      matInput
+      type="number"
+      formControlName="cantidad"
+      (input)="recalculaTotal()"
+    />
+    <mat-error *ngIf="form.get('cantidad')?.hasError('excedeStock')">
+      La cantidad excede el stock disponible
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Precio Unitario</mat-label>
+    <input
+      matInput
+      type="number"
+      formControlName="precioUnitario"
+      (input)="recalculaTotal()"
+    />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Precio Total</mat-label>
+    <input matInput type="number" formControlName="precioTotal" />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Detalle</mat-label>
+    <textarea matInput formControlName="detalle"></textarea>
+  </mat-form-field>
+
+  <button
+    mat-raised-button
+    color="primary"
+    type="submit"
+    [disabled]="form.invalid"
+  >
+    Guardar
+  </button>
+</form>

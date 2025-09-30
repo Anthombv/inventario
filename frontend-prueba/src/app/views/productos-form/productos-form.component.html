@@ -1,0 +1,74 @@
+<h2>{{ id ? "Editar Producto" : "Nuevo Producto" }}</h2>
+
+<form [formGroup]="form" (ngSubmit)="guardar()" class="producto-form">
+  <mat-form-field appearance="outline">
+    <mat-label>Nombre</mat-label>
+    <input matInput formControlName="nombre" />
+    <mat-error *ngIf="form.controls['nombre'].hasError('required')">
+      El nombre es obligatorio
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Categoría</mat-label>
+    <input matInput formControlName="categoria" />
+    <mat-error *ngIf="form.controls['categoria'].hasError('required')">
+      La categoría es obligatoria
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Descripción</mat-label>
+    <textarea matInput rows="3" formControlName="descripcion"></textarea>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>URL de imagen</mat-label>
+    <input
+      matInput
+      formControlName="imagen"
+      (input)="preview = form.value.imagen || ''"
+    />
+  </mat-form-field>
+
+  <div *ngIf="preview" style="margin-bottom: 1rem">
+    <img
+      [src]="preview"
+      alt="preview"
+      style="max-width: 220px; border-radius: 8px"
+    />
+  </div>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Precio</mat-label>
+    <input matInput type="number" formControlName="precio" />
+    <mat-error *ngIf="form.controls['precio'].hasError('required')">
+      El precio es obligatorio
+    </mat-error>
+    <mat-error *ngIf="form.controls['precio'].hasError('min')">
+      Debe ser ≥ 0
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Stock</mat-label>
+    <input matInput type="number" formControlName="stock" />
+    <mat-error *ngIf="form.controls['stock'].hasError('required')">
+      El stock es obligatorio
+    </mat-error>
+    <mat-error *ngIf="form.controls['stock'].hasError('min')">
+      Debe ser ≥ 0
+    </mat-error>
+  </mat-form-field>
+
+  <div class="acciones">
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="form.invalid"
+    >
+      Guardar
+    </button>
+  </div>
+</form>
